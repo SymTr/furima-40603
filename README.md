@@ -25,12 +25,12 @@
 | item_name  | string     | null: false                    |
 | item_detail| text       | null: false                    |
 | price      | integer    | null: false                    |
-| user_id    | references | null: false, foreign_key: true |
+| user       | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
-- has_many :comments, through: :purchases
+- has_one :purchase
 
 
 ## purchases テーブル
@@ -40,14 +40,14 @@
 | comment   | text       |                                |
 | item_id   | references | null: false, foreign_key: true |
 | user_id   | references | null: false, foreign_key: true |
-| destination_id   | references | null: false, foreign_key: true |
+| destination | references | null: false, foreign_key: true |
 
 
 ### Association
 
 - has_one :destination
 - belongs_to :user
-
+- belongs_to :item
 
 
 ## destinations テーブル
