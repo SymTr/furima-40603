@@ -44,7 +44,6 @@
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| comment   | text       |                                |
 | item      | references | null: false, foreign_key: true |
 | user      | references | null: false, foreign_key: true |
 
