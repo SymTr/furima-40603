@@ -76,3 +76,5 @@ end
 group :production do
   gem 'pg'
 end
+gem 'active_hash'
+# 5/8　gem 'active_hash' 早まって、bundle installまで済み。次回はモデル作成から
