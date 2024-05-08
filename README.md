@@ -11,9 +11,7 @@
 | first_name         | string | null: false | 
 | family_name_kana   | string | null: false | 
 | first_name_kana    | string | null: false | 
-| bd_year            | integer| null: false |
-| bd_month           | integer| null: false |
-| bd_day             | integer| null: false |
+| birthday           | date   | null: false |
 
 ### Association
 
@@ -24,18 +22,9 @@
 
 | Column     | Type       | Options                        |
 | ---------- | ---------- | ------------------------------ |
-| image      | string     | null: false                                  |
 | item_name  | string     | null: false                    |
 | item_detail| text       | null: false                    |
-| item_name  | string     | null: false                    |
-| category   | string     | null: false                    |
-| condition  | string     | null: false                    |
-| freight    | string     | null: false                    |
-| origin     | string     | null: false                    |
-| delivery_date  | integer     | null: false                    |
 | price      | integer    | null: false                    |
-| sales_fee  | string     | null: false                    |
-| profit     | string     | null: false                    |
 | user_id    | references | null: false, foreign_key: true |
 
 ### Association
@@ -65,13 +54,13 @@
 
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| post_code | integer    | null: false                                  |
-| prefecture| string     | null: false                    |
+| post_code | string     | null: false                    |
+| origin    | string     | null: false                    |
 | city      | string     | null: false                    |
-| area_no.  | integer    | null: false                    |
+| area_no   | string     | null: false                    |
 | building  | string     |                                |
-| phone     | integer    | null: false                    |
-| purchase_id | references | null: false, foreign_key: true |
+| phone     | string     | null: false                    |
+| purchase  | references | null: false, foreign_key: true |
 
 
 ### Association
