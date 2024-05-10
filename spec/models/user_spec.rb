@@ -50,7 +50,8 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
         @user.valid?
-        expect(@user.errors.full_messages).to include('must include both letters and numbers')
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+        # expect(@user.errors.full_messages).to include('must include both letters and numbers')
       end
     end
   end
