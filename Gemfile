@@ -51,6 +51,9 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails', '~> 4.0.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
 
 group :development do
@@ -77,4 +80,5 @@ group :production do
   gem 'pg'
 end
 gem 'active_hash'
-# 5/8　gem 'active_hash' 早まって、bundle installまで済み。次回はモデル作成から
+# 5/8 gem 'active_hash' 早まって、bundle installまで済み。次回はモデル作成から。一時メモ。実装後削除します。
+gem 'devise'
