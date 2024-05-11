@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index]
-  # 以下は間違えて先に書いてしまったので、のちほど使えるよう一時的にコメントアウトしました。
 
   def index
   end
@@ -12,7 +11,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      redirect_to @item
+      redirect_to root_path
     else
       render :new
     end
