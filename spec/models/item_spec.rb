@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Item, type: :model do
-
   before do
     @item = FactoryBot.build(:item)
   end
@@ -50,14 +49,14 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Item detail is too long (maximum is 1000 characters)')
       end
       it 'priceは¥300〜¥9,999,999の間でなければ保存できない' do
-          @item.price = 299
-          @item.valid?
-          expect(@item.errors.full_messages).to include("Price should be ¥300~¥9,999,999")
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price should be ¥300~¥9,999,999')
       end
       it 'priceは¥300〜¥9,999,999の間でなければ保存できない' do
-          @item.price = 10000000
-          @item.valid?
-          expect(@item.errors.full_messages).to include("Price should be ¥300~¥9,999,999")
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price should be ¥300~¥9,999,999')
       end
     end
   end
