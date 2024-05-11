@@ -7,4 +7,8 @@ priceInput.addEventListener("input", () => {
 
   const addTaxDom = document.getElementById("add-tax-price");
   addTaxDom.innerHTML = feeRoundedDown;
+
+  const profitDom =  document.getElementById("profit"); // make sure the Id matches in your HTML
+  const profitValue = inputValue - feeRoundedDown;
+  profitDom.innerHTML = Math.floor(profitValue);
 })
