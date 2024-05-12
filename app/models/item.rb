@@ -1,22 +1,3 @@
-# class Item < ApplicationRecord
-#   extend ActiveHash::Associations::ActiveRecordExtensions
-
-#   belongs_to :user
-#   belongs_to :category
-#   belongs_to :condition
-#   belongs_to :delivery_date
-#   belongs_to :freight
-#   belongs_to :origin
-
-#   has_one_attached :image
-
-#   validates :image, presence: true
-#   validates :category_id, :condition_id, :freight_id, :origin_id, :delivery_date_id,
-#             numericality: { other_than: 1, message: "can't be blank" }
-
-#   validates :item_name, presence: true, length: { maximum: 40 }
-#   validates :item_detail, presence: true, length: { maximum: 1000 }
-# end
 class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :user
@@ -26,8 +7,9 @@ class Item < ApplicationRecord
   belongs_to :freight
   belongs_to :origin
 
+  has_one :purchase
   has_one_attached :image
-
+  
   validates :image, presence: true
   validates :category_id, :condition_id, :freight_id, :origin_id, :delivery_date_id,
             numericality: { other_than: 1, message: "can't be blank" }
