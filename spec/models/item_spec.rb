@@ -59,7 +59,7 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price should be ¥300~¥9,999,999')
       end
       it 'priceに半角数字以外が含まれている場合は出品できない' do
-        @item.price = "111c"
+        @item.price = '111c'
         @item.valid?
         expect(@item.errors.full_messages).to include('Price Use half-width numbers')
       end
