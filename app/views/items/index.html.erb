@@ -143,10 +143,9 @@
         <div class='item-info'>
           <h3 class='item-name'>
             <%= item.item_name%>
-            <%= "商品名" %>
           </h3>
           <div class='item-price'>
-            <span><%= item.price %>円<br><%= item.freight_id %></span>
+            <span><%= item.price %>円<br><%= item.freight.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
