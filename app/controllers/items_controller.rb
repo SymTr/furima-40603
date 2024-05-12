@@ -19,7 +19,17 @@ class ItemsController < ApplicationController
   end
 
   def show
-      @item = Item.find(params[:id])
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    if @item.save
+      redirect_to edit_item_path
+    end
   end
 
   private
