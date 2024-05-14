@@ -3,12 +3,11 @@ class PurchasesController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
-    @purchase = Purchase.new
+    @purchase_destination = PurchaseDestination.new
   end
 
   def create
-    binding.pry
-    @purchase_destination = PurchaseDestination.new(purchase_params)
+    @purchase_destination = PurchaseDestination.new(purchase_destination_params)
     if @purchase_destination.valid?
       # pay_item
       @purchase_destination.save
@@ -24,10 +23,10 @@ class PurchasesController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def purchase_params
-    params.require(:purchase_destination).permit(:token, destination_attributes: [:post_code, :origin_id, :city, :area_number, :building, :phone]).merge(user_id: current_user.id, item_id: @item.id)
+  def purchase_destination_params
+    params.require(:purchase_destination).permit(:post_code, :origin_id, :city, :area_number, :building, :phone).merge(user_id: current_user.id, item_id: @item.id)
   end
-
+    #あとで上記にtoken足す！！！！
   # def pay_item
   #   Payjp.api_key = ""　
   #   Payjp::Charge.create(

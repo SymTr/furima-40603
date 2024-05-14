@@ -1,7 +1,7 @@
 class PurchaseDestination
   include ActiveModel::Model
-  attr_accessor :item, :user, :post_code, :origin_id, :city, :area_number, :building_name, :phone, :purchase
-
+  attr_accessor :item_id, :user_id, :post_code, :origin_id, :city, :area_number, :building, :phone
+# あとで上記にtoken たす！！！
   validates :post_code,   presence: true
   validates :origin_id,   presence: true
   validates :city,        presence: true
@@ -11,8 +11,8 @@ class PurchaseDestination
 
   def save
   
-    purchase = Purchase.create(item: item, user_id: user_id)
+    Purchase.create(item_id: item_id, user_id: user_id)
     
-    Address.create(post_code: post_code, origin_id: origin_id, city: city, area_number: area_number, phone: phone)
+    Destination.create(post_code: post_code, origin_id: origin_id, city: city, area_number: area_number, building: building, phone: phone)
   end
 end
