@@ -2,8 +2,11 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
   def index
     @item = Item.find(params[:item_id])
+    @purchase = Purchase.new
   end
 
-  def new
+  def create
   end
+  
 end
+  
