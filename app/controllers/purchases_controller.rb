@@ -5,6 +5,10 @@ class PurchasesController < ApplicationController
   def index
     @purchase_destination = PurchaseDestination.new
   end
+  
+  def new
+    @purchase_destination = PurchaseDestination.new
+  end
 
   def create
     @purchase_destination = PurchaseDestination.new(purchase_destination_params)
@@ -13,7 +17,7 @@ class PurchasesController < ApplicationController
       @purchase_destination.save
       return redirect_to root_path
     else
-      render 'index', status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
   end
 
