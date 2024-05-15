@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
   before_action :redirect_if_sold, only: [:index, :create]
 
   def index
-    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
+    gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     redirect_to root_path if current_user.id == @item.user_id
     @purchase_destination = PurchaseDestination.new
   end
@@ -14,7 +14,7 @@ class PurchasesController < ApplicationController
     if @purchase_destination.valid?
       pay_item
       @purchase_destination.save
-      return redirect_to root_path
+      redirect_to root_path
     else
       render :index, status: :unprocessable_entity
     end
@@ -31,11 +31,13 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_destination_params
-    params.require(:purchase_destination).permit(:post_code, :origin_id, :city, :area_number, :building, :phone, :price).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
+    params.require(:purchase_destination).permit(:post_code, :origin_id, :city, :area_number, :building, :phone, :price).merge(
+      token: params[:token], user_id: current_user.id, item_id: @item.id
+    )
   end
-  
+
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
     Payjp::Charge.create(
       amount: @item.price,              # Changed to fetch price from item
       card: params[:token],             # カードトークン

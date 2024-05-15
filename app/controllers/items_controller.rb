@@ -54,6 +54,7 @@ class ItemsController < ApplicationController
 
   def correct_user
     return if @item.user == current_user
+
     redirect_to root_path
   end
 
