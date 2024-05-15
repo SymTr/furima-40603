@@ -2,7 +2,7 @@ class PurchaseDestination
   include ActiveModel::Model
   attr_accessor :item_id, :user_id, :post_code, :origin_id, :city, :area_number, :building, :phone, :purchase_id
 # あとで上記にtoken たす！！！
-  with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'ハイフンを使用してください' } do
+  with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'Postal code is invalid. Enter it as follows (e.g. 123-4567' } do
     validates :post_code
   end
   validate :post_code_should_be_half_width
