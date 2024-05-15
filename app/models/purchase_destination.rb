@@ -1,7 +1,7 @@
 class PurchaseDestination
   include ActiveModel::Model
-  attr_accessor :item_id, :user_id, :post_code, :origin_id, :city, :area_number, :building, :phone, :purchase_id
-# あとで上記にtoken たす！！！
+  attr_accessor :item_id, :user_id, :post_code, :origin_id, :city, :area_number, :building, :phone, :token
+
   with_options presence: true, format: { with: /\A\d{3}[-]\d{4}\z/, message: 'Postal code is invalid. Enter it as follows (e.g. 123-4567' } do
     validates :post_code
   end
@@ -10,9 +10,8 @@ class PurchaseDestination
   validates :origin_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :city,        presence: true
   validates :area_number, presence: true
-  validates :phone, presence: true, format: { with: /\A\d{10,11}\z/, message: '10桁以上11桁以内の半角数値を入力してください' }
-    
-    # validates :token,       presence: true
+  validates :phone, presence: true, format: { with: /\A\d{10,11}\z/, message: '10桁以上11桁以内の半角数値を入力してください' }    
+  validates :token,       presence: true
 
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)

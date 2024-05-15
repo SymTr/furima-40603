@@ -4,4 +4,5 @@ class Purchase < ApplicationRecord
   belongs_to :user
   belongs_to :item
   accepts_nested_attributes_for :destination
+  attr_accessor :token
 end

@@ -4,20 +4,15 @@ class PurchasesController < ApplicationController
   before_action :redirect_if_sold, only: [:index, :create]
 
   def index
+    gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
     redirect_to root_path if current_user.id == @item.user_id
     @purchase_destination = PurchaseDestination.new
   end
-  
-  # def new
-  #   @item = Item.find(params[:item_id]) 
-  # end
-  #   @purchase_destination = PurchaseDestination.new
-  # end
 
   def create
     @purchase_destination = PurchaseDestination.new(purchase_destination_params)
     if @purchase_destination.valid?
-      # pay_item
+      pay_item
       @purchase_destination.save
       return redirect_to root_path
     else
@@ -36,15 +31,15 @@ class PurchasesController < ApplicationController
   end
 
   def purchase_destination_params
-    params.require(:purchase_destination).permit(:post_code, :origin_id, :city, :area_number, :building, :phone).merge(user_id: current_user.id, item_id: @item.id)
+    params.require(:purchase_destination).permit(:post_code, :origin_id, :city, :area_number, :building, :phone, :price).merge(token: params[:token], user_id: current_user.id, item_id: @item.id)
   end
-    #あとで上記にtoken足す！！！！
-  # def pay_item
-  #   Payjp.api_key = ""　
-  #   Payjp::Charge.create(
-  #     amount: @item.price,              # Changed to fetch price from item
-  #     card: purchase_params[:token],    # カードトークン
-  #     currency: 'jpy'                   # 通貨の種類（日本円）
-  #   )
-  # end
+  
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,              # Changed to fetch price from item
+      card: params[:token],             # カードトークン
+      currency: 'jpy'                   # 通貨の種類（日本円）
+    )
+  end
 end
