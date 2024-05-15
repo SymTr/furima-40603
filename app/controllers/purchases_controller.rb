@@ -1,14 +1,18 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create]
+  before_action :redirect_if_sold, only: [:index, :create]
 
   def index
+    redirect_to root_path if current_user.id == @item.user_id
     @purchase_destination = PurchaseDestination.new
   end
   
-  def new
-    @purchase_destination = PurchaseDestination.new
-  end
+  # def new
+  #   @item = Item.find(params[:item_id]) 
+  # end
+  #   @purchase_destination = PurchaseDestination.new
+  # end
 
   def create
     @purchase_destination = PurchaseDestination.new(purchase_destination_params)
@@ -22,6 +26,10 @@ class PurchasesController < ApplicationController
   end
 
   private
+
+  def redirect_if_sold
+    redirect_to root_path if @item.purchase.present?
+  end
 
   def set_item
     @item = Item.find(params[:item_id])
