@@ -71,7 +71,7 @@
     </div>
     <%# /カード情報の入力 %>
      <%= form_with model: @purchase_destination, url: item_purchases_path,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%=render 'shared/error_messages', model: @purchase_destination %>
+    <%= render 'shared/error_messages', model: @purchase_destination %>
     
     <%# 配送先の入力 %>
     <div class='shipping-address-form'>
