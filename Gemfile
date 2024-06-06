@@ -77,7 +77,7 @@ group :development do
   gem 'rubocop', require: false
 end
 group :production do
-  gem 'pg'
+  # gem 'pg' render にデプロイする時のみ必要。AWS不要
   gem 'unicorn', '6.1.0'
 end
 gem 'active_hash'
