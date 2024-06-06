@@ -78,9 +78,9 @@ group :development do
 end
 group :production do
   gem 'pg'
+  gem 'unicorn', '6.1.0'
 end
 gem 'active_hash'
-# 5/8 gem 'active_hash' 早まって、bundle installまで済み。次回はモデル作成から。一時メモ。実装後削除します。
 gem 'devise'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
